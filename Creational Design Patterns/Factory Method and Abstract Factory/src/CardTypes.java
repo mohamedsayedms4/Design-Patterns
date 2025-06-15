@@ -1,5 +1,7 @@
 public enum CardTypes {
     VISA,
     MASTERCARD,
-    AMERICAN_EXPRESS
+    AMERICAN_EXPRESS,
+    ALEXBANK,
+    QNB
 }

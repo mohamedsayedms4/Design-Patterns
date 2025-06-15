@@ -1,4 +1,4 @@
-public class Visa extends PaymentMethod{
+public class Visa extends InternationalPaymentMethod {
 
     public Visa(String cardHolder, String cardNumber, String cvv, String expiryDate) {
         super(cardHolder, cardNumber, cvv, expiryDate);

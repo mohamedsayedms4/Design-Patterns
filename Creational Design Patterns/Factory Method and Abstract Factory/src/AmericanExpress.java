@@ -1,4 +1,4 @@
-public class AmericanExpress extends PaymentMethod{
+public class AmericanExpress extends InternationalPaymentMethod {
 
     public AmericanExpress(String cardHolder, String cardNumber, String cvv, String expiryDate) {
         super(cardHolder, cardNumber, cvv, expiryDate);

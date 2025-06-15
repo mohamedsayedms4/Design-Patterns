@@ -1,4 +1,4 @@
-public class MasterCard extends PaymentMethod{
+public class MasterCard extends InternationalPaymentMethod {
 
 
     public MasterCard(String cardHolder, String cardNumber, String cvv, String expiryDate) {

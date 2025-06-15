@@ -1,6 +1,6 @@
 public class PaymentProcessor {
 
-    private PaymentMethodFactory paymentMethodFactory;
+    private PaymentMethodFactory  paymentMethodFactory;
 
     public PaymentProcessor(PaymentMethodFactory paymentMethodFactory) {
         this.paymentMethodFactory = paymentMethodFactory;
