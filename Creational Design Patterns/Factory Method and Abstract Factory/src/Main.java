@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        PaymentProcessor paymentProcessor = new PaymentProcessor();
-        paymentProcessor.processPayment("VISA","Mahmoud",100,"123","550","12-27");
+        PaymentProcessor paymentProcessor = new PaymentProcessor(new PaymentMethodFactory());
+        paymentProcessor.processPayment(CardTypes.MASTERCARD,"Mahmoud",100,"123","550","12-27");
     }
 }

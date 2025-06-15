@@ -1,23 +1,21 @@
 public class PaymentProcessor {
 
+    private PaymentMethodFactory paymentMethodFactory;
 
-    public void processPayment(String cardType , String cardHolder , double amount ,
+    public PaymentProcessor(PaymentMethodFactory paymentMethodFactory) {
+        this.paymentMethodFactory = paymentMethodFactory;
+    }
+
+    public void processPayment(CardTypes cardType , String cardHolder , double amount ,
                                String cardNumber , String cvv , String expiryDate ) {
         // logic of create card  +  processing
 
-        PaymentMethod paymentMethod = null;
-        if (cardType.equalsIgnoreCase(CardTypes.VISA.toString())) {
-            paymentMethod = new Visa(cardHolder,cardNumber,cvv,expiryDate);
-        }else if (cardType.equalsIgnoreCase(CardTypes.MASTERCARD.toString())) {
-            paymentMethod = new MasterCard(cardHolder,cardNumber,cvv,expiryDate);
-        }else if (cardType.equalsIgnoreCase(CardTypes.AMERICAN_EXPRESS.toString())){
-            paymentMethod = new AmericanExpress(cardHolder,cardNumber,cvv,expiryDate);
-        }else {
-            System.out.println("Invalid card type");
-        }
-
+       PaymentMethod paymentMethod = paymentMethodFactory.createPaymentMethod( cardType ,  cardHolder ,  amount ,
+         cardNumber ,  cvv ,  expiryDate);
         paymentMethod.authorizePayment();
         paymentMethod.startMoneyTransfer();
         paymentMethod.calculatePaymentFees(amount);
     }
+
+
 }
