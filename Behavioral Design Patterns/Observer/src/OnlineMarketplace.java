@@ -1,48 +1,56 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OnlineMarketplace {
 
-    private List<User> users;
+    private Map<EventType,List<Subscriber>> subscribers;
     private List<Product> products;
     private List<Offer> offers;
+    private List<Job> jobs;
 
     public OnlineMarketplace() {
-        this.users = new ArrayList<>();
+        this.subscribers = new HashMap<>();
+        initSubscriberEvent();
         this.products = new ArrayList<>();
         this.offers = new ArrayList<>();
+        this.jobs = new ArrayList<>();
     }
 
-    public void addUser(User user) {
-        this.users.add(user);
+    private void initSubscriberEvent() {
+        subscribers.put(EventType.NEW_PRODUCT, new ArrayList<>());
+        subscribers.put(EventType.NEW_OFFER, new ArrayList<>());
+        subscribers.put(EventType.NEW_JOB, new ArrayList<>());
+    }
+
+    public void subscribe(EventType eventType ,Subscriber subscriber) {
+        this.subscribers.get(eventType).add(subscriber);
     }
 
     public void addProduct(Product product) {
         this.products.add(product);
-        notifyUsers(product);
+        notifySubscribers(EventType.NEW_PRODUCT,"New product added " + product.getName());
     }
 
-    public void notifyUsers(Product product) {
-       users.forEach(user -> {
-           if(!user.isSubscribedToProducts()){
-                return;
-           }
-           user.notifiy(product);
-       });
+    public void addJob(Job job) {
+        this.jobs.add(job);
+        notifySubscribers(EventType.NEW_JOB, "New Job added..." + job.getJobTitle());
     }
 
-    public void notifyUsers(Offer offer) {
-        users.forEach(user -> {
-            if(!user.isSubscribedToOffers()){
-                return;
-            }
-            user.notifiy(offer);
-        });
+    public void notifySubscribers(EventType eventType ,String message) {
+       subscribers.get(eventType).forEach(subscriber -> subscriber.notify(message));
     }
+
 
     public void addOffer(Offer offer) {
         this.offers.add(offer);
-        notifyUsers(offer);
+        notifySubscribers(EventType.NEW_OFFER,"New offer :" + offer.getMessage());
+    }
+
+
+    public void unSubscribe(EventType eventType ,Subscriber subscriber) {
+        subscribers.get(eventType).remove(subscriber);
     }
 
 }

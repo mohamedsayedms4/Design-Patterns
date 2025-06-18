@@ -4,14 +4,25 @@ public class Main {
     public static void main(String[] args) {
 
         OnlineMarketplace marketplace = new OnlineMarketplace();
-        marketplace.addUser(new User("ahmed",true,true));
-        marketplace.addUser(new User("Mahmoud",false,true));
-        marketplace.addUser(new User("Ali",true,false));
-        marketplace.addUser(new User("Ola",false,false));
+
+        Customer customer = new Customer("Ahmed");
+        Customer customer2 = new Customer("Mohamed");
+        Customer customer3 = new Customer("Mahesh");
+        Subscriber customer4 = new JobFinder("Ali");
+
+//        marketplace.subscribe(EventType.NEW_PRODUCT, customer);
+//        marketplace.subscribe(EventType.NEW_OFFER, customer);
+//
+//        marketplace.subscribe(EventType.NEW_OFFER, customer2);
+//
+//        marketplace.subscribe(EventType.NEW_PRODUCT, customer3);
+
+        marketplace.subscribe(EventType.NEW_JOB, customer4);
 
         marketplace.addProduct(new Product("Laptop Lenovo",15000));
         marketplace.addProduct(new Product("Laptop MacBook Pro",680000));
 
+        marketplace.addJob(new Job("Backend"));
         marketplace.addOffer(new Offer("50% sale for clothes"));
     }
 }
