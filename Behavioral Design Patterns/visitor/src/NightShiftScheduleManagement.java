@@ -11,7 +11,7 @@ public class NightShiftScheduleManagement implements ScheduleManagement {
     }
 
     @Override
-    public void manageLeaveRequest() {
-        System.out.println("Manage Leave Request Night Shift ");
+    public void acceptVisitor(ScheduleManagementVisitor scheduleManagementVisitor) {
+        scheduleManagementVisitor.visit(this);
     }
 }

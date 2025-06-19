@@ -4,5 +4,7 @@ public interface ScheduleManagement {
 
     void calculateOvertime();
 
-    void manageLeaveRequest();
+
+    void acceptVisitor(ScheduleManagementVisitor scheduleManagementVisitor);
+
 }

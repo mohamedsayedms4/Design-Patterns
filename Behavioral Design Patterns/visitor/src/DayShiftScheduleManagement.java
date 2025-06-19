@@ -10,7 +10,8 @@ public class DayShiftScheduleManagement implements ScheduleManagement {
     }
 
     @Override
-    public void manageLeaveRequest() {
-        System.out.println("Manage Leave Request Day Shift ");
+    public void acceptVisitor(ScheduleManagementVisitor scheduleManagementVisitor) {
+        scheduleManagementVisitor.visit(this);
     }
+
 }
