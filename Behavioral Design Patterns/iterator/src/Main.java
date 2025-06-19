@@ -7,8 +7,9 @@ public class Main {
         EmployeeHierarchyCollection employeeHierarchyCollection =
                 new EmployeeHierarchyCollection("test");
 
-        while (employeeHierarchyCollection.hasNextEmployeeDirectReport()){
-            System.out.println(employeeHierarchyCollection.getNextDirectReportTo().getName());
+        var iterator = employeeHierarchyCollection.createEmployeeDirectReportIterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.getNext().getName());
         }
     }
 }
